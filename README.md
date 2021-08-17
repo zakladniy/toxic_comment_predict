@@ -1,7 +1,8 @@
 # toxic-comment-predict
 
-Simple Web-UI based on Gradio and deployed on Heroku service
-This Web-service provide to predict toxic or non toxic russian comments
+Simple Web-UI based on Gradio and deployed on Heroku service.
+
+This Web-service provide to predict toxic or non toxic russian comments based on BERT model
 
 ## Try Web application
 https://russian-toxic-comment-predict.herokuapp.com/
