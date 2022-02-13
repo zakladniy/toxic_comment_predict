@@ -1,7 +1,6 @@
 -f https://download.pytorch.org/whl/torch_stable.html
 torch==1.8.1+cpu 
-transformers
-pymorphy2==0.9.1
+transformers==4.6.1
 gradio==2.2.11
 pytest==6.2.4
 loguru

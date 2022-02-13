@@ -1,14 +1,13 @@
+from typing import Tuple
+
 import gradio as gr
 import torch
-
-from typing import Tuple
 from transformers import (
     AutoTokenizer,
     BertForSequenceClassification,
 )
 
 from text_preprocessing import TextPreprocessing
-
 
 BERT_MODEL = '../../model/bert_toxic_predict'
 BERT_TOKENIZER = '../../model/tokenizer'
@@ -61,7 +60,7 @@ if __name__ == "__main__":
           label="Comment for prediction",
       ),
       outputs=[
-          gr.outputs.Textbox(label="Predict label"),
+          gr.outputs.Textbox(label="Predicted label"),
           gr.outputs.Textbox(label="Probability of toxic comment"),
       ],
     )

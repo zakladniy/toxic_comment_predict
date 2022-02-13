@@ -1,5 +1,10 @@
 ### Python template
 
+# Train model
+notebooks/mlruns
+notebooks/output
+notebooks/runs
+
 # Logs
 *.log
 # Volume
