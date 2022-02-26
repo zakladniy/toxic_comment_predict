@@ -20,3 +20,9 @@ https://russian-toxic-comment-predict.herokuapp.com/
 ## Screenshots of application
 ### Common view
 ![](https://github.com/zakladniy/toxic_comment_predict/blob/main/screenshots/common_view.png)
+
+### Request
+![](https://github.com/zakladniy/toxic_comment_predict/blob/main/screenshots/request.png)
+
+### Response
+![](https://github.com/zakladniy/toxic_comment_predict/blob/main/screenshots/response.png)
