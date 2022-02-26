@@ -50,7 +50,7 @@ bert_tokenizer = AutoTokenizer.from_pretrained(BERT_TOKENIZER)
 
 
 app = FastAPI(
-    title='Predict probability of toxicity russian comment Web application',
+    title='Web application for predict probability of toxicity russian comment',
     description=app_desc,
 )
 

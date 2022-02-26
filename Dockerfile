@@ -1,4 +1,4 @@
-FROM python:3.9.6
+FROM python:3.9.6-buster
 
 WORKDIR /code
 
@@ -9,5 +9,4 @@ COPY . .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-WORKDIR /code/src/application/
-CMD ["uvicorn src.application.main:app"]
+CMD ["uvicorn", "src.application.main:app", "--host", "0.0.0.0", "--port", "80"]

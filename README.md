@@ -9,13 +9,42 @@ https://russian-toxic-comment-predict.herokuapp.com/
 
 
 ## How to run application?
-1. Clone repo
-2. Install "requirements.txt"
-3. Run with:
+Clone repo:
+  ```console 
+    https://github.com/zakladniy/toxic_comment_predict.git
+  ```
+
+### With poetry
+Check poetry in you OS
+
+Install with poetry
+  ```console 
+    poetry install
+  ```
+
+Activate env
+  ```console 
+    poetry shell
+  ```
+
+Run with:
   ```console 
     make run
   ```
+### With docker
 
+Create image:
+  ```console 
+    sudo docker build -t toxic_comment .
+  ```
+Run container:
+  ```console 
+    sudo docker run -p 80:80 -d toxic_comment
+  ```
+Open in browser url:
+  ```console 
+    http://127.0.0.1/docs
+  ```
 
 ## Screenshots of application
 ### Common view
