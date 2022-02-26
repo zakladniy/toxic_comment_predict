@@ -1,5 +1,5 @@
 run:
-	cd src/application/ && python3 main.py
+	uvicorn src.application.main:app --reload
 
 test:
 	pytest -v tests

@@ -5,6 +5,9 @@ notebooks/mlruns
 notebooks/output
 notebooks/runs
 
+poetry.lock
+info_api.log
+
 # Logs
 *.log
 # Volume

@@ -1,4 +1,4 @@
-FROM python:3.8.10
+FROM python:3.9.6
 
 WORKDIR /code
 
@@ -10,4 +10,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 WORKDIR /code/src/application/
-CMD ["python", "main.py"]
+CMD ["uvicorn src.application.main:app"]
