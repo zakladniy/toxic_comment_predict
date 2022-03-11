@@ -24,10 +24,8 @@ logger.add(
     compression='zip',
 )
 
-
 app_desc = """<h2>API for predict probability of toxicity russian comment</h2>
 <br>by Zakladniy Anton"""
-
 
 # Paths
 project_dir: Path = Path(__file__).parent.parent.parent.resolve()
@@ -35,25 +33,21 @@ model_dir: PurePath = PurePath(project_dir, 'model')
 BERT_MODEL: str = str(PurePath(model_dir, 'bert_toxic_predict'))
 BERT_TOKENIZER: str = str(PurePath(model_dir, 'tokenizer'))
 
-
 MAX_LENGTH = 512
-
 
 # Set number of threads for BERT inference
 torch.set_num_threads(1)
-
 
 # Load BERT tokenizer and model from file
 bert_model = BertForSequenceClassification.from_pretrained(
     BERT_MODEL, num_labels=2).to('cpu')
 bert_tokenizer = AutoTokenizer.from_pretrained(BERT_TOKENIZER)
 
-
 app = FastAPI(
-    title='Web application for predict probability of toxicity russian comment',
+    title='Web application for predict probability of toxicity russian '
+          'comment',
     description=app_desc,
 )
-
 
 resp_example = {
     200: {
@@ -63,11 +57,11 @@ resp_example = {
                 "example": {
                     'data': {
                         "preprocessed_text": "str",
-                        },
                     },
                 },
             },
         },
+    },
 }
 
 

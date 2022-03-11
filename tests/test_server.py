@@ -2,7 +2,8 @@ import inspect
 import os
 import sys
 
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(
+    inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
@@ -14,6 +15,7 @@ client = TestClient(main.app)
 
 
 def test_server_for_correct_response() -> None:
+    """Tests for correct response fields and model prediction."""
     params = {
         'text': 'как дела',
     }
