@@ -29,6 +29,7 @@ matplotlib = "^3.5.1"
 lime = "^0.2.0"
 shap = "^0.40.0"
 transformers-interpret = "^0.6.0"
+jupyter = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 safety = ">=1.10.3"
