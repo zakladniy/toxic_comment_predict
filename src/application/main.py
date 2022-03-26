@@ -1,7 +1,8 @@
 import warnings
 from pathlib import Path, PurePath
-from typing import Tuple
+from typing import Tuple, List
 
+import numpy as np
 import torch
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
@@ -11,6 +12,7 @@ from transformers import (
     BertForSequenceClassification,
 )
 
+from .api_models import Comments
 from .text_preprocessing import text_preprocessing
 
 warnings.filterwarnings('ignore')
@@ -74,53 +76,51 @@ def redirect_to_docs() -> RedirectResponse:
     return RedirectResponse('/docs')
 
 
-def get_prediction(text: str, tokenizer: AutoTokenizer,
+def get_prediction(texts: List[str], tokenizer: AutoTokenizer,
                    model: BertForSequenceClassification,
-                   max_length: int = MAX_LENGTH) -> Tuple[str, float]:
+                   max_length: int = MAX_LENGTH) -> List[dict]:
     """Predict label and toxic probability by input text
 
-    @param text: input text
+    @param texts: list of texts or comments
     @param tokenizer: BERT tokenizer
     @param model: BERT model
     @param max_length: sequence maximum length
     @return: label and toxic probability
     """
-    # Clean input text
-    text = text_preprocessing(text)
+    # Clean input texts
+    clean_texts = [text_preprocessing(text) for text in texts]
     # Tokenize preprocessed text
     inputs = tokenizer(
-        [text],
+        clean_texts,
         padding=True,
         truncation=True,
         max_length=max_length,
         return_tensors="pt",
     ).to('cpu')
-    # BERT raw outputs
     outputs = model(**inputs)
-    # Probabilities
-    probs = outputs[0].softmax(1).to('cpu').detach().numpy()
-    proba = probs[0]
-    return 'Toxic' if proba[1] > 0.5 else 'Non toxic', float(proba[1])
+    probas = outputs.logits.softmax(1).detach().numpy()
+    toxic_probas = list(probas[:, 1])
+    classes_num = list(np.argmax(probas, axis=1))
+    classes = ['Toxic' if class_ == 1 else 'Not toxic' for class_ in
+               classes_num]
+    results = list(zip(classes, toxic_probas, texts))
+    results = [{'class': item[0], 'toxic_proba': float(item[1]),
+                'input_text': item[2]} for item in results]
+    return results
 
 
-@app.get('/api/toxic_predict')
-def product_group_predict(text: str):
+@app.post('/api/toxic_predict')
+def product_group_predict(data: Comments):
     """API endpoint for predict toxicity of russian comment.
 
-    @param text: russian text/comment for predict
+    @param data: russian texts/comments for predict
     @return: label and toxic probability
     """
     predictions = get_prediction(
-        text=text,
+        texts=data.comments,
         tokenizer=bert_tokenizer,
         model=bert_model,
     )
-    logger.info(f"Is ours predict: input: {text}, "
-                f"is ours: {predictions[0]}, proba: {predictions[1]}")
     return {
-        'data':
-            {
-                'label': predictions[0],
-                'proba_of_toxic': predictions[1],
-            },
+        'data': predictions,
     }

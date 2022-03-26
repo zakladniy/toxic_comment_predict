@@ -23,6 +23,10 @@ gunicorn = "^20.1.0"
 uvloop = "^0.16.0"
 httptools = "^0.3.0"
 tqdm = "^4.62.3"
+jupyter = "^1.0.0"
+scikit-learn = "^1.0.2"
+pandas = "^1.4.1"
+matplotlib = "^3.5.1"
 
 [tool.poetry.dev-dependencies]
 safety = ">=1.10.3"
@@ -36,7 +40,7 @@ wemake-python-styleguide = ">=0.14"
 autoflake = ">=1.3.1"
 autopep8 = ">=1.5.4"
 docformatter = ">=1.3.1"
-isort = ">=4.3.21" # TODO (isort): not ^5.5.4 due to wemake-python-styleguide
+isort = ">=4.3.21"
 language-formatters-pre-commit-hooks = ">=1.5.0"
 
 # (Static) Code Analyzers
@@ -49,7 +53,7 @@ flake8-comprehensions = ">=3.2.0" # Better list/set/dict comprehensions.
 flake8-debugger = ">=3.2.0"
 flake8-docstrings = ">=1.5"
 flake8-eradicate = ">=0.3" # Find commented out (or so called "dead") code.
-flake8-fixme = ">=1.1.0" # Check for FIXME, TODO and other temporary developer notes.
+flake8-fixme = ">=1.1.0"
 flake8-isort = ">=3.0"
 flake8-logging-format = ">=0.6.0"
 flake8-pytest-style = ">=1.3"
