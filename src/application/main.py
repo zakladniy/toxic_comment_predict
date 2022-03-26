@@ -121,6 +121,10 @@ def product_group_predict(data: Comments):
         tokenizer=bert_tokenizer,
         model=bert_model,
     )
+    for pred in predictions:
+        logger.info(f"Input_text: {pred['input_text']}, "
+                    f"class: {pred['class']}, "
+                    f"toxic_proba: {pred['toxic_proba']}")
     return {
         'data': predictions,
     }
