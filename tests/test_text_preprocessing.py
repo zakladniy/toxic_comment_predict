@@ -1,6 +1,6 @@
 import pytest
 
-from src.application.text_preprocessing import text_preprocessing
+from src.application.classifier.text_preprocessing import text_preprocessing
 
 
 @pytest.mark.parametrize("test_input,expected", [(' ветер ()@@', 'ветер'),

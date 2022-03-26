@@ -1,3 +1,4 @@
+"""Module with tools for text preprocessing."""
 import re
 
 

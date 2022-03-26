@@ -7,16 +7,19 @@ client = TestClient(main.app)
 
 def test_server_for_correct_response() -> None:
     """Tests for correct response fields and model prediction."""
-    params = {
-        'text': 'как дела',
+    payload = {
+        "comments": [
+            "Привет, как дела?",
+        ]
     }
-    response = client.get(
+    response = client.post(
         url='/api/toxic_predict',
-        params=params,
+        json=payload,
     )
     assert response.status_code == 200
     assert isinstance(response.json(), dict)
-    assert 'label' in response.json()['data']
-    assert 'proba_of_toxic' in response.json()['data']
-    assert response.json()['data']['label'] == 'Non toxic'
-    assert round(response.json()['data']['proba_of_toxic']) == 0.0
+    assert 'input_text' in response.json()['data'][0]
+    assert 'class' in response.json()['data'][0]
+    assert 'toxic_proba' in response.json()['data'][0]
+    assert response.json()['data'][0]['class'] == 'Not toxic'
+    assert round(response.json()['data'][0]['toxic_proba']) == 0.0
