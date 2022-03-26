@@ -1,6 +1,6 @@
 import warnings
 from pathlib import Path, PurePath
-from typing import Tuple, List
+from typing import List
 
 import numpy as np
 import torch
@@ -26,8 +26,6 @@ logger.add(
     compression='zip',
 )
 
-app_desc = """<h2>API for predict probability of toxicity russian comment</h2>
-<br>by Zakladniy Anton"""
 
 # Paths
 project_dir: Path = Path(__file__).parent.parent.parent.resolve()
@@ -35,7 +33,7 @@ model_dir: PurePath = PurePath(project_dir, 'model')
 BERT_MODEL: str = str(PurePath(model_dir, 'bert_toxic_predict'))
 BERT_TOKENIZER: str = str(PurePath(model_dir, 'tokenizer'))
 
-MAX_LENGTH = 512
+MAX_LENGTH = 275
 
 # Set number of threads for BERT inference
 torch.set_num_threads(1)
@@ -45,31 +43,20 @@ bert_model = BertForSequenceClassification.from_pretrained(
     BERT_MODEL, num_labels=2).to('cpu')
 bert_tokenizer = AutoTokenizer.from_pretrained(BERT_TOKENIZER)
 
+
+app_desc = """<h2>API for predict probability of toxicity russian comment</h2>
+<br>by Zakladniy Anton"""
+
 app = FastAPI(
     title='Web application for predict probability of toxicity russian '
           'comment',
     description=app_desc,
 )
 
-resp_example = {
-    200: {
-        "description": "Success response",
-        "content": {
-            "application/json": {
-                "example": {
-                    'data': {
-                        "preprocessed_text": "str",
-                    },
-                },
-            },
-        },
-    },
-}
-
 
 @app.get('/')
 def redirect_to_docs() -> RedirectResponse:
-    """Autoredirect to docs page
+    """Autoredirect to docs page.
 
     @return: RedirectResponse
     """
@@ -79,7 +66,7 @@ def redirect_to_docs() -> RedirectResponse:
 def get_prediction(texts: List[str], tokenizer: AutoTokenizer,
                    model: BertForSequenceClassification,
                    max_length: int = MAX_LENGTH) -> List[dict]:
-    """Predict label and toxic probability by input text
+    """Predict label and toxic probability by input text.
 
     @param texts: list of texts or comments
     @param tokenizer: BERT tokenizer
