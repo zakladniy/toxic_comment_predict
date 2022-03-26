@@ -2,7 +2,22 @@
 
 Simple Web-API based on FastAPI and deployed on Heroku service.
 
-This Web-service provide to predict toxic or non toxic russian comments based on BERT model
+This Web-service provide to predict toxic or not toxic russian comments based on BERT model
+
+
+## Dataset
+Thanks [Alexander Semiletov](https://www.kaggle.com/alexandersemiletov) 
+for [Toxic Russian Comments Dataset](https://www.kaggle.com/code/alexandersemiletov/starter-read-toxic-russian-comments-dataset)
+
+There is no data in this repository. 
+I was forced to remove them due to Heroku's size restrictions.
+You can download the data from the link above, 
+unzip it and put it in the cloned repository at data/external data
+
+
+## Model
+Thanks [David Dale](https://huggingface.co/cointegrated) 
+for pre-trained [tiny BERT-model](https://huggingface.co/cointegrated/rubert-tiny)
 
 ## Try Web application
 https://russian-toxic-comment-predict.herokuapp.com/
