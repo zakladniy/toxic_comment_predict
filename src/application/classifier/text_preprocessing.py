@@ -3,7 +3,7 @@ import re
 
 
 def text_preprocessing(text: str) -> str:
-    """Drop thrash symbols from text.
+    """Drop trash symbols from text.
 
     @param text: raw text
     @return: clean text
