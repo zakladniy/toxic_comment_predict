@@ -34,6 +34,7 @@ BERT_TOKENIZER: str = str(PurePath(model_dir, 'tokenizer'))
 # Load BERT tokenizer and model from file
 bert_model = BertForSequenceClassification.from_pretrained(
     BERT_MODEL, num_labels=2).to('cpu')
+bert_model.eval()
 bert_tokenizer = AutoTokenizer.from_pretrained(BERT_TOKENIZER)
 
 

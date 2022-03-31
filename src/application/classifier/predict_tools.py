@@ -1,6 +1,6 @@
 """Module with predict tools."""
 from typing import List
-
+import torch
 import numpy as np
 from transformers import (
     AutoTokenizer,
@@ -33,8 +33,9 @@ def get_prediction(texts: List[str], tokenizer: AutoTokenizer,
         max_length=max_length,
         return_tensors="pt",
     ).to('cpu')
-    outputs = model(**inputs)
-    probas = outputs.logits.softmax(1).detach().numpy()
+    with torch.no_grad():
+        outputs = model(**inputs)
+        probas = outputs.logits.softmax(1).detach().numpy()
     toxic_probas = list(probas[:, 1])
     classes_num = list(np.argmax(probas, axis=1))
     classes = ['Toxic' if class_ == 1 else 'Not toxic' for class_ in
