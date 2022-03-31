@@ -6,4 +6,5 @@ from pydantic import BaseModel
 
 class Comments(BaseModel):
     """Comments for prediction."""
+
     comments: List[str]
