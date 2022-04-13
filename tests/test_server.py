@@ -13,13 +13,13 @@ def test_server_for_correct_response() -> None:
         ]
     }
     response = client.post(
-        url='/api/toxic_predict',
+        url="/api/toxic_predict",
         json=payload,
     )
     assert response.status_code == 200
     assert isinstance(response.json(), dict)
-    assert 'input_text' in response.json()['data'][0]
-    assert 'class' in response.json()['data'][0]
-    assert 'toxic_proba' in response.json()['data'][0]
-    assert response.json()['data'][0]['class'] == 'Not toxic'
-    assert round(response.json()['data'][0]['toxic_proba']) == 0.0
+    assert "input_text" in response.json()["data"][0]
+    assert "class" in response.json()["data"][0]
+    assert "toxic_proba" in response.json()["data"][0]
+    assert response.json()["data"][0]["class"] == "Not toxic"
+    assert round(response.json()["data"][0]["toxic_proba"]) == 0.0

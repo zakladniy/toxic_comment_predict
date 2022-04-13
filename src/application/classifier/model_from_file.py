@@ -31,6 +31,5 @@ def load_model_from_file() -> tuple[BertForSequenceClassification,
     )
     bert_model.eval()
     bert_tokenizer: AutoTokenizer = AutoTokenizer.from_pretrained(
-        BERT_TOKENIZER
-    )
+        BERT_TOKENIZER)
     return bert_model, bert_tokenizer

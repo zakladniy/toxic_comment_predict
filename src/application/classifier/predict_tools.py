@@ -42,8 +42,7 @@ def get_prediction(
         probas = outputs.logits.softmax(1).detach().numpy()
     toxic_probas = list(probas[:, 1])
     classes_num = list(np.argmax(probas, axis=1))
-    classes = ["Toxic" if class_ == 1 else "Not toxic"
-               for class_ in classes_num]
+    classes = ["Toxic" if class_ == 1 else "Not toxic" for class_ in classes_num]
     results = list(zip(classes, toxic_probas, texts))
     results = [
         {
