@@ -4,5 +4,4 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: self-hosted
     steps:
-      - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "This job runs on local runner"
