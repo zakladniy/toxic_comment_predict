@@ -1,6 +1,6 @@
 # toxic-comment-predict
 
-Simple Web-API based on FastAPI and deployed on Heroku service.
+Simple Web-API based on FastAPI and deployed on Railway service.
 
 This Web-service provide to predict toxic or not toxic russian comments based on BERT model
 
