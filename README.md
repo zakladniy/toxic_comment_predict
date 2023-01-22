@@ -20,7 +20,7 @@ Thanks [David Dale](https://huggingface.co/cointegrated)
 for pre-trained [tiny BERT-model](https://huggingface.co/cointegrated/rubert-tiny)
 
 ## Try Web application
-https://russian-toxic-comment-predict.herokuapp.com/
+https://toxiccommentpredict-production.up.railway.app
 
 
 ## How to run application?
